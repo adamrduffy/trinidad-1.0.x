@@ -201,7 +201,7 @@ TrPopupDialog._initDialogPage = function()
   // Resize the dialog to the page content
   if (!dialog._fixedSize)
   {
-    if (_agent.isIE)
+    if (_agent.isIE && _agent.version < 9)
     {
       dialog._resizeIFrame(
         dialog._iframe.Document.body.scrollWidth+40, 
@@ -218,7 +218,7 @@ TrPopupDialog._initDialogPage = function()
   {
     if(dialog._variableWidth)
     {
-      if (_agent.isIE)
+      if (_agent.isIE && _agent.version < 9)
       {
         dialog._resizeIFrame(dialog._iframe.Document.body.scrollWidth+40, null);
       }
@@ -230,7 +230,7 @@ TrPopupDialog._initDialogPage = function()
 
     if(dialog._variableHeight)
     {
-      if (_agent.isIE)
+      if (_agent.isIE && _agent.version < 9)
       {
         dialog._resizeIFrame(null, dialog._iframe.Document.body.scrollHeight+40);
       }
