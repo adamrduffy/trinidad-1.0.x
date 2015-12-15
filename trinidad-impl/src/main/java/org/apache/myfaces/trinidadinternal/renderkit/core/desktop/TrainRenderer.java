@@ -1283,6 +1283,7 @@ public class TrainRenderer
       _rowIndex    = index;
       _rowKey      = rowKey;
       _active      = active;
+      _selected    = _getBooleanAttribute(attributes, "selected", false);
       _visited     = _getBooleanAttribute(attributes, "visited", false);
       _disabled    = _getBooleanAttribute(attributes, "disabled", false);
       _parentEnd   = false;
@@ -1435,7 +1436,7 @@ public class TrainRenderer
         return states;
       }
       
-      if(isActive())
+      if(isActive() || isSelected())
       {
         states.add(_STATE_ACTIVE);
         return states;
@@ -1506,7 +1507,11 @@ public class TrainRenderer
     {
       return _active;
     }
-    
+
+    public boolean isSelected() {
+      return _selected;
+    }
+
     public boolean isDisabled()
     {
       return _disabled;
@@ -1602,7 +1607,7 @@ public class TrainRenderer
       String           text)
     {
       String altTextKey;
-      if(isActive())
+      if(isActive() || isSelected())
       {
         altTextKey = _ACTIVE_KEY;
       }
@@ -1636,7 +1641,7 @@ public class TrainRenderer
       names.addFirst(builder.toString());
       builder.delete(baseIndex, baseIndex + suffixLength);
       
-        if(isActive())
+        if(isActive() || isSelected())
         {
           builder.append(_SUFFIX_ACTIVE);
         }
@@ -1681,6 +1686,7 @@ public class TrainRenderer
     }
     
     private boolean _active;       // Is this station the active one?
+    private boolean _selected;     // Is this station the selected one?
     private boolean _disabled;     // Disabled attribute
     private boolean _overflowEnd; // Is this station the next step set link?
     private boolean _overflowStart; // Is this station the prev step set link?
